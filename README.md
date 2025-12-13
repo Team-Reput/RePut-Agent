@@ -1,6 +1,6 @@
 Jeremy – RePut ESG & Supply-Chain Assistant
 
-A lightweight local RAG-based chatbot for RePut using Gemini + Gradio
+A lightweight local RAG-based chatbot for RePut using Anthropic Sonnet 3.5 + Amazon Titan.
 
 Jeremy is an AI chatbot that answers questions about RePut, sustainability, traceability, circularity, and ESG data by reading real RePut PDF documents.
 It uses a custom-built Retrieval-Augmented Generation (RAG) backend with Gemini embeddings and a Gradio chat UI.
@@ -25,11 +25,7 @@ These instructions work for Windows, macOS, and Linux.
 
 1️⃣ Prerequisites
 
-Python 3.10 or 3.11
-
-A Gemini API key
-(Create one at https://aistudio.google.com
- or ask your teammate for a key)
+Python 3.11
 
 
 2️⃣Set Up Environment
