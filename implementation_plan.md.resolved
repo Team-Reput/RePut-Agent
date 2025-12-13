@@ -1,0 +1,49 @@
+# Implementation Plan - Chatbot Widget Integration
+
+The goal is to enable your RAG Chatbot to be embedded into any external website as a floating widget (a button in the corner that opens the chat window).
+
+## Proposed Architecture
+We will use an **Iframe-based Widget** approach. This is the industry standard for chatbots (like Intercom or Drift) because:
+1.  **Isolation**: The chatbot's CSS won't conflict with the host website's CSS.
+2.  **Security**: The chat session is secure within your domain.
+3.  **Simplicity**: The host website only needs to add one line of code.
+
+## User Review Required
+> [!NOTE]
+> Ensure your hosting provider (where you deploy this Flask app) allows usage in Iframes. Most do by default, but some strict security headers might need adjustment.
+
+## Proposed Changes
+
+### 1. Backend Updates
+#### [MODIFY] [app.py](file:///c:/Users/sunda/OneDrive/Desktop/Reput%20project/RAGchatbot_reput/app.py)
+- Add a new route `@app.route('/widget')`.
+- This route will serve a simplified version of the chat interface specifically designed for small windows.
+- (Optional) Configure `CORS` if we need to allow the external site to ping an API availability check.
+
+### 2. Frontend Updates
+#### [NEW] [templates/widget.html](file:///c:/Users/sunda/OneDrive/Desktop/Reput%20project/RAGchatbot_reput/templates/widget.html)
+- A streamlined version of [index.html](file:///c:/Users/sunda/OneDrive/Desktop/Reput%20project/RAGchatbot_reput/templates/index.html).
+- Removes the large "Jeremy" header and side margins.
+- Optimized to fit 100% width/height of the small iframe.
+
+#### [NEW] [static/js/embed.js](file:///c:/Users/sunda/OneDrive/Desktop/Reput%20project/RAGchatbot_reput/static/js/embed.js)
+- This is the script external websites will load.
+- It will:
+    1.  Inject a "Chat via RePut" floating button to the bottom-right of the page.
+    2.  Inject a hidden `iframe` pointing to your new `/widget` route.
+    3.  Handle the toggle logic (Show/Hide chat window on click).
+
+### 3. Styling
+#### [MODIFY] [static/css/style.css](file:///c:/Users/sunda/OneDrive/Desktop/Reput%20project/RAGchatbot_reput/static/css/style.css)
+- Add a `.widget-mode` class to adjust padding and shadows when running inside the iframe.
+
+## Verification Plan
+
+### Manual Verification
+1.  **Local Test Page**: Create a simple `test_integration.html` file locally that mimics an external website.
+2.  **Embed Code**: Add the `<script src="http://localhost:5000/static/js/embed.js"></script>` tag to it.
+3.  **Functional Test**:
+    - Open `test_integration.html`.
+    - Verify the floating button appears.
+    - Click the button and ensure the iframe opens the chat.
+    - Send a message and verify the RAG bot responds correctly.

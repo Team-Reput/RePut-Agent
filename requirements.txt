@@ -1,0 +1,13 @@
+langchain
+langchain-community
+chromadb
+pypdf
+fastapi
+Flask
+uvicorn[standard]
+python-dotenv
+langchain-aws
+boto3
+sentence-transformers
+langchain_chroma   # optional fallback for local embeddings if you ever want that
+gunicorn
