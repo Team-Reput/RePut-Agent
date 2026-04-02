@@ -221,7 +221,7 @@ body {
 .suggestion-chip {
     background: #ecfdf5;
     border: 1px solid var(--primary-light);
-    color: #047857;
+    color: #10b981;
     padding: 0.5rem 1rem;
     border-radius: 999px;
     font-size: 0.85rem;
@@ -268,7 +268,8 @@ body {
 }
 
 #send-btn {
-    background: var(--primary-color);
+    /* background: var(--primary-color); */
+    background: #10b981;
     color: white;
     border: none;
     width: 42px;
@@ -282,7 +283,7 @@ body {
 }
 
 #send-btn:hover {
-    background: var(--primary-dark);
+    background: #10b991;
 }
 
 #send-btn:active {
